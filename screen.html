@@ -174,26 +174,44 @@ function randomIndex(max) {
   }
   return Math.floor(Math.random() * max);
 }
-function claim(branch) {
+let pendingAction = false;
+async function serverAction(endpoint, payload) {
+  if (pendingAction) return { ok: false, error: '正在处理，请稍候' };
+  pendingAction = true;
+  try {
+    const response = await fetch('/draw/api/' + endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload || {})
+    });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const result = await response.json();
+    if (result && result.state) applyServer(result.state);
+    if (!result || result.ok !== true) return { ok: false, error: result?.error || '操作未完成，请重试' };
+    return result;
+  } catch (_) {
+    await syncFromServer();
+    const state = load();
+    if (endpoint === 'claim' && payload?.id && state.claims.some(x => x.id === payload.id)) return { ok: true };
+    if (endpoint === 'draw' && payload?.spin_id && state.spin?.id === payload.spin_id) return { ok: true };
+    return { ok: false, error: '未能确认操作结果，请检查连接并查看当前状态后重试' };
+  } finally {
+    pendingAction = false;
+  }
+}
+async function claim(branch) {
   if (!NAMES.includes(branch)) return { ok: false, error: '请选择所属分公司' };
+  if (IS_HTTP) return serverAction('claim', { branch, id: uid() });
   const d = load();
   if (d.claims.some(x => x.branch === branch)) return { ok: false, error: '该分公司已经认领' };
   if (d.claims.length >= 4) return { ok: false, error: '四家分公司均已完成认领' };
   const item = { id: uid(), branch, time: Date.now(), seat: d.claims.length + 1, rank: null };
   d.claims.push(item);
   save(d);
-  if (IS_HTTP) {
-    fetch('/draw/api/claim', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ branch, id: item.id })
-    }).then(r => r.json()).then(res => {
-      if (res && res.state) applyServer(res.state);
-    }).catch(() => {});
-  }
   return { ok: true, item };
 }
-function draw(branch) {
+async function draw(branch) {
+  if (IS_HTTP) return serverAction('draw', { branch, spin_id: uid() });
   const d = load();
   if (d.spin && Date.now() - d.spin.time < SPIN_MS) return { ok: false, error: '上一轮正在揭晓，请稍候' };
   const me = d.claims.find(x => x.branch === branch);
@@ -209,25 +227,17 @@ function draw(branch) {
   seenSpins[spin.id] = spin.time;
   d.spin = spin;
   save(d);
-  if (IS_HTTP) {
-    fetch('/draw/api/draw', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ branch, rank, spin_id: spin.id })
-    }).then(r => r.json()).then(res => {
-      if (res && res.state) applyServer(res.state);
-    }).catch(() => {});
-  }
   return { ok: true, rank, spin: d.spin };
 }
-function reset() {
-  Object.keys(seenSpins).forEach(k => delete seenSpins[k]);
-  save({ claims: [], spin: null, version: 2, updated: Date.now() });
+async function reset() {
   if (IS_HTTP) {
-    fetch('/draw/api/reset', { method: 'POST' }).then(r => r.json()).then(res => {
-      if (res && res.state) applyServer(res.state);
-    }).catch(() => {});
+    const result = await serverAction('reset');
+    if (!result.ok) return result;
+  } else {
+    save({ claims: [], spin: null, version: 2, updated: Date.now() });
   }
+  Object.keys(seenSpins).forEach(k => delete seenSpins[k]);
+  return { ok: true };
 }
 function listen(fn) {
   window.addEventListener('riskdraw:change', fn);
@@ -1482,7 +1492,7 @@ $('resultHint').textContent=done===4?'四家分公司抽查顺序已全部确定
 if(!spin&&lastSpin){lastSpin='';degrees=0;const wEl=$('wheel');if(wEl){wEl.classList.remove('spin');wEl.style.transform='rotate(0deg)'}}if(spin&&spin.id!==lastSpin){lastSpin=spin.id;clearTimeout(spinTimer);if(fresh){setWheel(spin.rank,true);spinTimer=setTimeout(render,Math.max(30,D.SPIN_MS-(Date.now()-spin.time))+40)}else setWheel(spin.rank,false)}
 }
 if($('copyLink'))$('copyLink').addEventListener('click',async()=>{const url=new URL('participant.html',location.href).href;try{await navigator.clipboard.writeText(url);toast('手机参与链接已复制')}catch(_){toast('请复制地址栏中的 participant.html 链接')}});
-$('resetBtn').addEventListener('click',()=>{if(confirm('确定重置本场抽签？认领名单和抽签结果将全部清空。')){clearTimeout(spinTimer);lastSpin='';degrees=0;D.reset();toast('本场已重置')}});
+$('resetBtn').addEventListener('click',async()=>{if(confirm('确定重置本场抽签？认领名单和抽签结果将全部清空。')){const btn=$('resetBtn');btn.disabled=true;const out=await D.reset();btn.disabled=false;if(out.ok){clearTimeout(spinTimer);lastSpin='';degrees=0;toast('本场已重置')}else toast(out.error)}});
 function clock(){ $('clock').textContent=new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false}) }clock();setInterval(clock,30000);makeQR();D.listen(render);
 })();
 </script>
