@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2366e9">
+<title>11月风险异常抽查顺序 · 手机参与端</title>
+<style>
+:root{--blue:#2467eb;--blue2:#5b9af8;--navy:#17396f;--ink:#233d63;--muted:#8ba0bd;--line:#e7eef9;--pale:#f4f8ff;--green:#15956b;--shadow:0 16px 42px rgba(28,72,145,.09)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink)}body{background:#f3f7ff}button{font:inherit;cursor:pointer}.phone{width:min(100%,500px);min-height:100vh;margin:auto;background:#f5f8ff;position:relative;overflow:hidden;padding-bottom:30px}.hero{height:284px;position:relative;overflow:hidden;padding:24px 25px 45px;color:white;background:linear-gradient(132deg,#174bbd 0%,#2469eb 55%,#79b6ff 125%);border-radius:0 0 30px 30px}.hero:before{content:"";position:absolute;width:310px;height:310px;border:1px solid #ffffff26;border-radius:50%;right:-90px;top:-110px;box-shadow:0 0 0 35px #ffffff0a,0 0 0 70px #ffffff08}.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff25;border-radius:50%;right:22px;bottom:-115px}.hero-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}.brand{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:850;letter-spacing:.2px}.brand-mark{width:31px;height:31px;border:1px solid #ffffff65;border-radius:10px;display:grid;place-items:center;font-size:14px}.live{font-size:9px;padding:7px 10px;border:1px solid #ffffff45;border-radius:20px;background:#ffffff16;color:#fff;letter-spacing:.4px}.kicker{font-size:9px;font-weight:900;letter-spacing:2.5px;color:#c9e0ff;margin-top:31px;position:relative;z-index:1}.hero h1{font-size:34px;line-height:1.18;letter-spacing:-1px;margin:9px 0 9px;font-weight:950;position:relative;z-index:1}.hero h1 span{color:#d8eaff}.hero p{font-size:11px;color:#e0edff;margin:0;position:relative;z-index:1;letter-spacing:.1px}.content{position:relative;z-index:2;margin:-34px 15px 0}.card{background:#fff;border:1px solid #e8eef8;border-radius:22px;padding:21px 19px;box-shadow:var(--shadow)}.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.card-head h2{font-size:16px;color:#1c3d72;margin:0;font-weight:900}.step{font-size:9px;color:#8fa5c5;font-weight:850;letter-spacing:1px}.subline{font-size:11px;line-height:1.65;color:#8b9fba;margin:-8px 0 16px}.branch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.branch{position:relative;min-height:105px;border:1px solid #e5edf8;background:linear-gradient(145deg,#fff,#f9fbff);border-radius:16px;text-align:left;padding:15px 14px;transition:.18s;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;color:var(--ink)}.branch:active{transform:scale(.985)}.branch.selected{border-color:#5b95f3;background:linear-gradient(145deg,#f1f7ff,#eaf3ff);box-shadow:inset 0 0 0 1px #7eaff7,0 6px 16px #2463eb12}.branch.taken{background:#f7f9fc;color:#b2bfd1;border-color:#edf1f6;cursor:not-allowed}.branch-name{font-size:21px;font-weight:950;letter-spacing:.3px;color:#1d3b6d}.branch.taken .branch-name{color:#aab8ca}.branch-en{font-size:8px;color:#94a7c1;letter-spacing:1.1px;font-weight:750}.branch.selected .branch-en{color:#4d83d8}.branch-check{position:absolute;right:12px;top:12px;width:19px;height:19px;border-radius:50%;border:1.5px solid #d7e2f1;background:#fff;display:grid;place-items:center;color:white;font-size:11px;font-weight:900}.branch.selected .branch-check{background:#2d73eb;border-color:#2d73eb}.branch.taken .branch-check{border-color:#dce4ef;background:#eef2f7}.branch-status{position:absolute;right:11px;top:36px;font-size:8px;color:#9aaac0}.branch.taken .branch-status{color:#94a3b8}.primary{width:100%;height:51px;border:0;border-radius:14px;margin-top:16px;background:linear-gradient(100deg,#2362e6,#4387f5);color:white;font-size:14px;font-weight:900;box-shadow:0 9px 19px #2463eb30;transition:.2s}.primary:disabled{background:#d8e3f2;color:#91a4bf;box-shadow:none;cursor:not-allowed}.primary .arrow{font-size:17px;margin-left:7px}.hint{text-align:center;font-size:10px;color:#9aabc1;margin:12px 0 0;line-height:1.6}.flow{display:flex;align-items:center;justify-content:center;gap:9px;margin:19px 2px 0;color:#a0b0c5;font-size:9px}.flow b{color:#3e78d9}.flow i{width:21px;height:1px;background:#d8e3f2}.footer-note{text-align:center;margin:22px 0 0;font-size:8px;color:#a7b6ca;letter-spacing:1.5px}.status-card{display:none}.status-chip{display:inline-flex;align-items:center;gap:7px;background:#eef6ff;color:#2b6fe2;border:1px solid #dceaff;border-radius:20px;padding:7px 10px;font-size:9px;font-weight:850}.status-chip i{width:6px;height:6px;border-radius:50%;background:#4388f3}.status-chip.done{background:#edfaf5;border-color:#d7f1e6;color:#17865f}.status-chip.done i{background:#19a879}.seat{display:flex;align-items:center;gap:16px;padding:14px 0 16px;border-bottom:1px solid #edf2f8}.seat-no{font-size:55px;line-height:1;font-weight:950;letter-spacing:-4px;color:#dce9fb;min-width:68px}.seat-info small{display:block;font-size:9px;color:#94a8c4;letter-spacing:1.1px;margin-bottom:5px}.seat-info strong{font-size:20px;color:#1d3e74;font-weight:950}.seat-info p{font-size:10px;color:#92a5bf;margin:5px 0 0}.status-message{padding:14px 14px;border-radius:14px;background:#f2f7ff;border:1px solid #e5effd;margin-top:15px}.status-message strong{font-size:12px;color:#2b62bd;display:block}.status-message p{font-size:10px;line-height:1.7;color:#8298b7;margin:5px 0 0}.mini-wheel-wrap{width:180px;height:180px;margin:19px auto 12px;position:relative}.mini-wheel{width:100%;height:100%;border-radius:50%;filter:drop-shadow(0 8px 15px #2463eb20)}.mini-wheel.spin{transition:transform 4600ms cubic-bezier(.10,.72,.12,1)}.mini-pointer{position:absolute;z-index:3;left:50%;top:-7px;transform:translateX(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-top:22px solid #174bb4;filter:drop-shadow(0 2px 2px #174bb444)}.mini-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:50%;background:white;border:5px solid #eaf2ff;display:grid;place-items:center;color:#2463c9;font-size:11px;font-weight:950;box-shadow:0 4px 13px #164b9d20}.result-panel{margin-top:15px;padding:17px;border-radius:16px;background:linear-gradient(135deg,#edf5ff,#f8fbff);border:1px solid #dceaff;text-align:center}.result-label{font-size:9px;color:#7e9cc5;letter-spacing:1.8px;font-weight:900}.result-rank{font-size:34px;color:#2465df;font-weight:950;margin:6px 0 1px;letter-spacing:-1px}.result-company{font-size:13px;color:#365781;font-weight:800}.result-list{margin-top:14px}.result-row{display:flex;align-items:center;justify-content:space-between;padding:11px 1px;border-bottom:1px solid #edf2f8;font-size:11px}.result-row:last-child{border-bottom:0}.result-row span{color:#879bb7}.result-row b{color:#36577f;font-weight:850}.result-row.mine b{color:#2468e7}.result-row .pending{color:#b2bfd0;font-weight:650}.toast{position:fixed;z-index:20;left:50%;bottom:24px;transform:translate(-50%,14px);opacity:0;pointer-events:none;background:#173c79;color:#fff;border-radius:30px;padding:12px 18px;font-size:11px;box-shadow:0 10px 25px #173c7930;transition:.25s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:520px){body{padding:20px 0}.phone{border-radius:24px;min-height:calc(100vh - 40px);box-shadow:0 15px 60px #25518d18}.hero{border-radius:24px 24px 30px 30px}}
+@media(max-width:380px){.hero{padding-left:20px;padding-right:20px}.hero h1{font-size:31px}.content{margin-left:11px;margin-right:11px}.card{padding:18px 15px}.branch{min-height:96px;padding:12px}.branch-name{font-size:19px}.branch-en{font-size:7px}.flow{gap:6px;font-size:8px}.flow i{width:14px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="phone">
+  <header class="hero">
+    <div class="hero-top"><div class="brand"><span class="brand-mark">序</span>风险异常抽查</div><span class="live">●　现场公开抽签</span></div>
+    <div class="kicker">NOVEMBER · ORDER DRAW</div>
+    <h1>11月风险异常<br><span>抽查顺序</span></h1>
+    <p>四家分公司 · 先认领先抽 · 随机确定最终顺位</p>
+  </header>
+  <main class="content">
+    <section class="card" id="chooseCard">
+      <div class="card-head"><h2>选择所属分公司</h2><span class="step">STEP 01 / 02</span></div>
+      <p class="subline">请选择你所在的分公司，确认认领后即可加入抽签队列。</p>
+      <div class="branch-grid" id="branchGrid"></div>
+      <button class="primary" id="claimBtn" type="button" disabled>确认认领 <span class="arrow">→</span></button>
+      <p class="hint">认领先后决定抽签先后，最终名次由转盘随机产生。</p>
+    </section>
+    <section class="card status-card" id="statusCard">
+      <div class="card-head"><h2 id="statusTitle">认领成功</h2><span class="step" id="statusStep">STEP 02 / 02</span></div>
+      <div id="statusBody"></div>
+      <div class="result-list" id="queueList"></div>
+    </section>
+    <div class="flow"><b>01 认领分公司</b><i></i><span>02 开始抽签</span><i></i><span>03 公布结果</span></div>
+    <div class="footer-note">NOVEMBER RISK REVIEW · OFFICIAL DRAW</div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script>(() => {
+'use strict';
+const KEY = 'nov-risk-order-draw-blue-v2';
+const NAMES = ['郫都','龙泉','宜宾','双流'];
+const SPIN_MS = 4600;
+const IS_HTTP = /^https?:$/i.test(location.protocol);
+let memory = { claims: [], spin: null, version: 2, updated: 0 };
+let synced = !IS_HTTP;
+const seenSpins = {};
+let channel = null;
+try {
+  const raw = localStorage.getItem(KEY);
+  if (raw) {
+    const val = JSON.parse(raw);
+    if (val && Array.isArray(val.claims)) memory = val;
+  }
+} catch (_) {}
+try {
+  if ('BroadcastChannel' in window) {
+    channel = new BroadcastChannel(KEY);
+    channel.onmessage = () => window.dispatchEvent(new Event('riskdraw:change'));
+  }
+} catch (_) {}
+function load() {
+  if (!IS_HTTP) {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) {
+        const value = JSON.parse(raw);
+        if (value && Array.isArray(value.claims)) return value;
+      }
+    } catch (_) {}
+  }
+  return memory;
+}
+function save(data, skipBroadcast) {
+  data.updated = Date.now();
+  memory = data;
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (_) {}
+  if (!skipBroadcast) {
+    try { if (channel) channel.postMessage({ type: 'refresh', updated: data.updated }); } catch (_) {}
+  }
+  window.dispatchEvent(new Event('riskdraw:change'));
+}
+function applyServer(srv) {
+  if (!srv || !Array.isArray(srv.claims)) return;
+  synced = true;
+  let newSpin = null;
+  if (srv.spin && srv.spin.id) {
+    const sid = srv.spin.id;
+    const age = typeof srv.spin.age_ms === 'number' ? srv.spin.age_ms : 0;
+    if (!seenSpins[sid]) {
+      seenSpins[sid] = age < SPIN_MS ? (Date.now() - Math.min(age, 350)) : (Date.now() - Math.max(age, SPIN_MS + 500));
+    }
+    newSpin = { id: sid, branch: srv.spin.branch, rank: srv.spin.rank, time: seenSpins[sid] };
+  }
+  const prevSig = JSON.stringify({ c: memory.claims, s: memory.spin ? memory.spin.id : null });
+  const nextSig = JSON.stringify({ c: srv.claims, s: newSpin ? newSpin.id : null });
+  memory = { claims: srv.claims, spin: newSpin, version: srv.version || 2, updated: srv.updated || Date.now() };
+  try { localStorage.setItem(KEY, JSON.stringify(memory)); } catch (_) {}
+  if (prevSig !== nextSig) {
+    window.dispatchEvent(new Event('riskdraw:change'));
+  }
+}
+async function syncFromServer() {
+  if (!IS_HTTP) return;
+  try {
+    const r = await fetch('/draw/api/state?t=' + Date.now(), { cache: 'no-store' });
+    if (r.ok) applyServer(await r.json());
+  } catch (_) {}
+}
+window.addEventListener('storage', e => {
+  if (e.key === KEY && !IS_HTTP) window.dispatchEvent(new Event('riskdraw:change'));
+});
+const uid = () => Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
+function randomIndex(max) {
+  if (max <= 1) return 0;
+  if (window.crypto && crypto.getRandomValues) {
+    const limit = Math.floor(4294967296 / max) * max;
+    const a = new Uint32Array(1);
+    do { crypto.getRandomValues(a); } while (a[0] >= limit);
+    return a[0] % max;
+  }
+  return Math.floor(Math.random() * max);
+}
+function claim(branch) {
+  if (!NAMES.includes(branch)) return { ok: false, error: '请选择所属分公司' };
+  const d = load();
+  if (d.claims.some(x => x.branch === branch)) return { ok: false, error: '该分公司已经认领' };
+  if (d.claims.length >= 4) return { ok: false, error: '四家分公司均已完成认领' };
+  const item = { id: uid(), branch, time: Date.now(), seat: d.claims.length + 1, rank: null };
+  d.claims.push(item);
+  save(d);
+  if (IS_HTTP) {
+    fetch('/draw/api/claim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ branch, id: item.id })
+    }).then(r => r.json()).then(res => {
+      if (res && res.state) applyServer(res.state);
+    }).catch(() => {});
+  }
+  return { ok: true, item };
+}
+function draw(branch) {
+  const d = load();
+  if (d.spin && Date.now() - d.spin.time < SPIN_MS) return { ok: false, error: '上一轮正在揭晓，请稍候' };
+  const me = d.claims.find(x => x.branch === branch);
+  if (!me) return { ok: false, error: '请先认领抽签席位' };
+  if (me.rank) return { ok: false, error: '该分公司已经完成抽签' };
+  const next = d.claims.find(x => !x.rank);
+  if (!next || next.branch !== branch) return { ok: false, error: '请按照认领先后顺序依次抽签' };
+  const available = [1, 2, 3, 4].filter(rank => !d.claims.some(x => x.rank === rank));
+  if (!available.length) return { ok: false, error: '本场抽签已经结束' };
+  const rank = available[randomIndex(available.length)];
+  me.rank = rank;
+  const spin = { id: uid(), branch, rank, time: Date.now() };
+  seenSpins[spin.id] = spin.time;
+  d.spin = spin;
+  save(d);
+  if (IS_HTTP) {
+    fetch('/draw/api/draw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ branch, rank, spin_id: spin.id })
+    }).then(r => r.json()).then(res => {
+      if (res && res.state) applyServer(res.state);
+    }).catch(() => {});
+  }
+  return { ok: true, rank, spin: d.spin };
+}
+function reset() {
+  Object.keys(seenSpins).forEach(k => delete seenSpins[k]);
+  save({ claims: [], spin: null, version: 2, updated: Date.now() });
+  if (IS_HTTP) {
+    fetch('/draw/api/reset', { method: 'POST' }).then(r => r.json()).then(res => {
+      if (res && res.state) applyServer(res.state);
+    }).catch(() => {});
+  }
+}
+function listen(fn) {
+  window.addEventListener('riskdraw:change', fn);
+  fn();
+  if (IS_HTTP) {
+    syncFromServer();
+    setInterval(syncFromServer, 500);
+  }
+}
+window.RiskDraw = { KEY, NAMES, SPIN_MS, load, claim, draw, reset, listen, isSynced: () => synced, zh: ['', '第一', '第二', '第三', '第四'] };
+})();</script>
+<script>
+(()=>{'use strict';
+const D=RiskDraw,$=id=>document.getElementById(id),EN=['PIDU','LONGQUAN','YIBIN','SHUANGLIU'];
+let selected='',identity='',lastSpin='',degrees=0,renderTimer=null;
+try{identity=sessionStorage.getItem('nov-risk-my-branch-v2')||''}catch(_){}
+function setIdentity(v){identity=v;try{sessionStorage.setItem('nov-risk-my-branch-v2',v)}catch(_){}}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._timer);el._timer=setTimeout(()=>el.classList.remove('show'),2300)}
+function safe(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const wheelSVG='<svg class="mini-wheel" id="miniWheel" viewBox="0 0 600 600" role="img" aria-label="抽查顺序转盘"><path fill="#2868e9" d="M300 300L87.9 87.9A300 300 0 0 1 512.1 87.9Z"/><path fill="#9bc4ff" d="M300 300L512.1 87.9A300 300 0 0 1 512.1 512.1Z"/><path fill="#e1efff" d="M300 300L512.1 512.1A300 300 0 0 1 87.9 512.1Z"/><path fill="#5b96f4" d="M300 300L87.9 512.1A300 300 0 0 1 87.9 87.9Z"/><path d="M87.9 87.9L512.1 512.1M512.1 87.9L87.9 512.1" stroke="#fff" stroke-opacity=".6" stroke-width="3"/><g text-anchor="middle" font-family="sans-serif" font-weight="900"><g fill="#fff" transform="translate(300 128)"><text font-size="14" y="-13">NO.01</text><text font-size="54" y="48">第一</text></g><g fill="#17458f" transform="translate(472 300)"><text font-size="14" y="-13">NO.02</text><text font-size="54" y="48">第二</text></g><g fill="#17458f" transform="translate(300 472)"><text font-size="14" y="-13">NO.03</text><text font-size="54" y="48">第三</text></g><g fill="#fff" transform="translate(128 300)"><text font-size="14" y="-13">NO.04</text><text font-size="54" y="48">第四</text></g></g><circle cx="300" cy="300" r="292" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3"/></svg>';
+function spinWheel(rank){const el=$('miniWheel');if(!el)return;const target=[0,270,180,90][rank-1],add=(target-(degrees%360)+360)%360,from=degrees;degrees+=add+2160;el.classList.remove('spin');el.style.transform='rotate('+from+'deg)';void el.offsetWidth;el.classList.add('spin');el.style.transform='rotate('+degrees+'deg)'}
+function resultList(d,hideCurrent){return [1,2,3,4].map(rank=>{const c=d.claims.find(x=>x.rank===rank&&!(hideCurrent&&d.spin&&x.branch===d.spin.branch));return '<div class="result-row '+(c&&c.branch===identity?'mine':'')+'"><span>'+D.zh[rank]+'顺位</span><b class="'+(c?'':'pending')+'">'+(c?safe(c.branch)+'分公司':'等待揭晓')+'</b></div>'}).join('')}
+function render(){const d=D.load(),me=d.claims.find(c=>c.branch===identity),next=d.claims.find(c=>!c.rank),fresh=!!(d.spin&&Date.now()-d.spin.time<D.SPIN_MS);
+if(identity&&!me&&(!D.isSynced||D.isSynced())){setIdentity('');identity='';lastSpin=''}
+$('branchGrid').innerHTML=D.NAMES.map((b,i)=>{const taken=d.claims.some(c=>c.branch===b);return '<button class="branch '+(selected===b?'selected ':'')+(taken?'taken':'')+'" type="button" data-branch="'+b+'" '+(taken?'disabled':'')+'><span class="branch-check">'+(selected===b?'✓':taken?'✓':'')+'</span><span class="branch-status">'+(taken?'已认领':'')+'</span><strong class="branch-name">'+b+'</strong><span class="branch-en">'+EN[i]+' · 分公司</span></button>'}).join('');
+$('claimBtn').disabled=!selected||d.claims.some(c=>c.branch===selected);
+if(!me){$('chooseCard').style.display='block';$('statusCard').style.display='none';return}
+$('chooseCard').style.display='none';$('statusCard').style.display='block';const seat=d.claims.indexOf(me)+1;
+let body='';
+if(me.rank){
+ if(fresh&&d.spin&&d.spin.branch===identity){$('statusTitle').textContent='转盘正在旋转';$('statusStep').textContent='DRAWING';body='<div class="seat"><div class="seat-no">'+String(seat).padStart(2,'0')+'</div><div class="seat-info"><small>YOUR DRAW SEAT</small><strong>'+safe(identity)+'分公司</strong><p>已认领成功 · 正在揭晓抽查顺位</p></div></div><div class="mini-wheel-wrap"><span class="mini-pointer"></span>'+wheelSVG+'<span class="mini-hub">抽签</span></div><div class="status-message"><strong>请看大屏，结果即将揭晓</strong><p>转盘停止后，你的抽查顺位将同步显示在本页面。</p></div>';
+  if(lastSpin!==d.spin.id){lastSpin=d.spin.id;requestAnimationFrame(()=>spinWheel(me.rank));clearTimeout(renderTimer);renderTimer=setTimeout(render,Math.max(30,D.SPIN_MS-(Date.now()-d.spin.time))+50)}
+ }else{$('statusTitle').textContent='抽签已完成';$('statusStep').textContent='COMPLETED';body='<div class="seat"><div class="seat-no">'+String(seat).padStart(2,'0')+'</div><div class="seat-info"><small>YOUR DRAW SEAT</small><strong>'+safe(identity)+'分公司</strong><p>抽签顺位已经确定</p></div></div><div class="result-panel"><div class="result-label">YOUR DRAW RESULT</div><div class="result-rank">'+D.zh[me.rank]+'顺位</div><div class="result-company">'+safe(identity)+'分公司</div></div>'}
+}else if(fresh){
+ $('statusTitle').textContent='上一轮正在揭晓';$('statusStep').textContent='PLEASE WAIT';body='<div class="seat"><div class="seat-no">'+String(seat).padStart(2,'0')+'</div><div class="seat-info"><small>YOUR DRAW SEAT</small><strong>'+safe(identity)+'分公司</strong><p>已成功认领抽签席位</p></div></div><div class="status-message"><strong>请稍候，上一轮结果正在揭晓</strong><p>'+safe(d.spin.branch)+'分公司正在抽签，结果公布后将轮到下一家。</p></div>';
+}else if(next&&next.branch===identity){
+ $('statusTitle').textContent='轮到你抽签了';$('statusStep').textContent='YOUR TURN';body='<div class="seat"><div class="seat-no">'+String(seat).padStart(2,'0')+'</div><div class="seat-info"><small>YOUR DRAW SEAT</small><strong>'+safe(identity)+'分公司</strong><p>已轮到你，请准备开始抽签</p></div></div><div class="status-message"><strong>现在由你开启转盘</strong><p>认领先后只决定抽签先后，第一至第四顺位由转盘随机决定。</p></div><button class="primary" id="drawBtn" type="button">开始抽签 <span class="arrow">→</span></button>';
+}else{
+ $('statusTitle').textContent='认领成功 · 请候场';$('statusStep').textContent='WAITING';body='<div class="seat"><div class="seat-no">'+String(seat).padStart(2,'0')+'</div><div class="seat-info"><small>YOUR DRAW SEAT</small><strong>'+safe(identity)+'分公司</strong><p>已成功认领抽签席位</p></div></div><div class="status-message"><strong>请稍候，暂未轮到你</strong><p>当前由 '+safe(next?next.branch+'分公司':'其他分公司')+' 抽签。轮到你时，本页面会自动更新。</p></div>';
+}
+$('statusBody').innerHTML=body;$('queueList').innerHTML=resultList(d,fresh);
+const btn=$('drawBtn');if(btn)btn.addEventListener('click',()=>{const out=D.draw(identity);if(!out.ok)toast(out.error)});
+if(me.rank&&fresh&&d.spin&&d.spin.branch!==identity){clearTimeout(renderTimer);renderTimer=setTimeout(render,Math.max(30,D.SPIN_MS-(Date.now()-d.spin.time))+50)}
+}
+$('branchGrid').addEventListener('click',e=>{const b=e.target.closest('[data-branch]');if(b&&!b.disabled){selected=b.dataset.branch;render()}});
+$('claimBtn').addEventListener('click',()=>{const out=D.claim(selected);if(out.ok){setIdentity(selected);render();toast('认领成功，已加入抽签队列')}else toast(out.error)});
+D.listen(render);
+})();
+</script>
+</body></html>
