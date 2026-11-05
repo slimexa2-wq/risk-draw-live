@@ -123,26 +123,44 @@ function randomIndex(max) {
   }
   return Math.floor(Math.random() * max);
 }
-function claim(branch) {
+let pendingAction = false;
+async function serverAction(endpoint, payload) {
+  if (pendingAction) return { ok: false, error: '正在处理，请稍候' };
+  pendingAction = true;
+  try {
+    const response = await fetch('/draw/api/' + endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload || {})
+    });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const result = await response.json();
+    if (result && result.state) applyServer(result.state);
+    if (!result || result.ok !== true) return { ok: false, error: result?.error || '操作未完成，请重试' };
+    return result;
+  } catch (_) {
+    await syncFromServer();
+    const state = load();
+    if (endpoint === 'claim' && payload?.id && state.claims.some(x => x.id === payload.id)) return { ok: true };
+    if (endpoint === 'draw' && payload?.spin_id && state.spin?.id === payload.spin_id) return { ok: true };
+    return { ok: false, error: '未能确认操作结果，请检查连接并查看当前状态后重试' };
+  } finally {
+    pendingAction = false;
+  }
+}
+async function claim(branch) {
   if (!NAMES.includes(branch)) return { ok: false, error: '请选择所属分公司' };
+  if (IS_HTTP) return serverAction('claim', { branch, id: uid() });
   const d = load();
   if (d.claims.some(x => x.branch === branch)) return { ok: false, error: '该分公司已经认领' };
   if (d.claims.length >= 4) return { ok: false, error: '四家分公司均已完成认领' };
   const item = { id: uid(), branch, time: Date.now(), seat: d.claims.length + 1, rank: null };
   d.claims.push(item);
   save(d);
-  if (IS_HTTP) {
-    fetch('/draw/api/claim', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ branch, id: item.id })
-    }).then(r => r.json()).then(res => {
-      if (res && res.state) applyServer(res.state);
-    }).catch(() => {});
-  }
   return { ok: true, item };
 }
-function draw(branch) {
+async function draw(branch) {
+  if (IS_HTTP) return serverAction('draw', { branch, spin_id: uid() });
   const d = load();
   if (d.spin && Date.now() - d.spin.time < SPIN_MS) return { ok: false, error: '上一轮正在揭晓，请稍候' };
   const me = d.claims.find(x => x.branch === branch);
@@ -158,25 +176,17 @@ function draw(branch) {
   seenSpins[spin.id] = spin.time;
   d.spin = spin;
   save(d);
-  if (IS_HTTP) {
-    fetch('/draw/api/draw', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ branch, rank, spin_id: spin.id })
-    }).then(r => r.json()).then(res => {
-      if (res && res.state) applyServer(res.state);
-    }).catch(() => {});
-  }
   return { ok: true, rank, spin: d.spin };
 }
-function reset() {
-  Object.keys(seenSpins).forEach(k => delete seenSpins[k]);
-  save({ claims: [], spin: null, version: 2, updated: Date.now() });
+async function reset() {
   if (IS_HTTP) {
-    fetch('/draw/api/reset', { method: 'POST' }).then(r => r.json()).then(res => {
-      if (res && res.state) applyServer(res.state);
-    }).catch(() => {});
+    const result = await serverAction('reset');
+    if (!result.ok) return result;
+  } else {
+    save({ claims: [], spin: null, version: 2, updated: Date.now() });
   }
+  Object.keys(seenSpins).forEach(k => delete seenSpins[k]);
+  return { ok: true };
 }
 function listen(fn) {
   window.addEventListener('riskdraw:change', fn);
@@ -218,11 +228,11 @@ if(me.rank){
  $('statusTitle').textContent='认领成功 · 请候场';$('statusStep').textContent='WAITING';body='<div class="seat"><div class="seat-no">'+String(seat).padStart(2,'0')+'</div><div class="seat-info"><small>YOUR DRAW SEAT</small><strong>'+safe(identity)+'分公司</strong><p>已成功认领抽签席位</p></div></div><div class="status-message"><strong>请稍候，暂未轮到你</strong><p>当前由 '+safe(next?next.branch+'分公司':'其他分公司')+' 抽签。轮到你时，本页面会自动更新。</p></div>';
 }
 $('statusBody').innerHTML=body;$('queueList').innerHTML=resultList(d,fresh);
-const btn=$('drawBtn');if(btn)btn.addEventListener('click',()=>{const out=D.draw(identity);if(!out.ok)toast(out.error)});
+const btn=$('drawBtn');if(btn)btn.addEventListener('click',async()=>{btn.disabled=true;const out=await D.draw(identity);if(!out.ok){toast(out.error);btn.disabled=false}});
 if(me.rank&&fresh&&d.spin&&d.spin.branch!==identity){clearTimeout(renderTimer);renderTimer=setTimeout(render,Math.max(30,D.SPIN_MS-(Date.now()-d.spin.time))+50)}
 }
 $('branchGrid').addEventListener('click',e=>{const b=e.target.closest('[data-branch]');if(b&&!b.disabled){selected=b.dataset.branch;render()}});
-$('claimBtn').addEventListener('click',()=>{const out=D.claim(selected);if(out.ok){setIdentity(selected);render();toast('认领成功，已加入抽签队列')}else toast(out.error)});
+$('claimBtn').addEventListener('click',async()=>{const btn=$('claimBtn'),branch=selected;btn.disabled=true;const out=await D.claim(branch);if(out.ok){setIdentity(branch);render();toast('认领成功，已加入抽签队列')}else{render();toast(out.error)}});
 D.listen(render);
 })();
 </script>
